@@ -1,143 +1,131 @@
-# ER Diagram Workshop – Submission Template
+# Experiment 1: Entity-Relationship (ER) Diagram
 
-## Objective
+### 🎯 Objective:
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
-## Purpose
-Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
+### 📚 Purpose:
+The purpose of this workshop is to gain hands-on experience in designing ER diagrams that visually represent the structure of a database including entities, relationships, attributes, and constraints.
+
 
 ---
 
-# Scenario A: City Fitness Club Management
+# 🧪Scenario : Restaurant Table Reservation and Ordering
 
-**Business Context:**  
-FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
+Modern restaurants need efficient systems to manage reservations, table allocations, food ordering, billing, and staff assignments. Relying on manual methods often leads to booking conflicts, delayed service, billing errors, and overall customer dissatisfaction. To overcome these challenges, a structured restaurant management database is required.
 
-**Requirements:**  
-- Members register with name, membership type, and start date.  
-- Each member can join multiple programs (Yoga, Zumba, Weight Training).  
-- Trainers assigned to programs; a program may have multiple trainers.  
-- Members may book personal training sessions with trainers.  
-- Attendance recorded for each session.  
-- Payments tracked for memberships and sessions.
+**User Requirements:**  
+
+- Store customer details and reservation history.
+- Allow booking of tables with date, time, and number of guests.
+- Manage tables with unique numbers and seating capacity.
+- Record food orders linked to reservations.
+- Maintain a menu of dishes with name, category, and price.
+- Generate a single bill per reservation with payment details.
+- Assign one waiter per reservation, while a waiter can serve many reservations.
+- Ensure no double-booking of tables and maintain accurate data links.
+
+## 📝Tasks:
+1.Identify entities, relationships, and attributes.
+
+2.Draw the ER diagram using any tool (draw.io, dbdiagram.io, hand-drawn and scanned).
+
+3.Include:
+    Cardinality & participation constraints
+    Each reservation generates one bill, capturing total amount, payment method, and billing date.
+    
+4.Explain:
+    Why you chose the entities and relationships.
+    How you modeled prerequisites or billing.
+
 
 ### ER Diagram:
 *Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+<img width="709" height="431" alt="Screenshot 2025-09-27 084701" src="https://github.com/user-attachments/assets/5f637312-a81c-42f7-9548-7a68c85c3f9d" />
+
 
 ### Entities and Attributes
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+Customer: Attributes: CustomerID (Primary Key), Name, Phone, Email
+
+Reservation: Attributes: ReservationID (Primary Key), Date, Time, NumberOfGuests, CustomerID (Foreign Key), TableID (Foreign Key), WaiterID (Foreign Key)
+
+Table: Attributes: TableID (Primary Key), TableNumber, Capacity
+
+Order: Attributes: OrderID (Primary Key), OrderDate, Status, TotalAmount, ReservationID (Foreign Key)
+
+Dish: Attributes: DishID (Primary Key), DishName, Category, Price
+
+Bill: Attributes: BillID (Primary Key), Amount, BillDate, PaymentMethod, ReservationID (Foreign Key)
+
+Waiter: Attributes: WaiterID (Primary Key), Name, Shift, Experience
 
 ### Relationships and Constraints
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+Makes (Customer ↔ Reservation)
 
-### Assumptions
-- 
-- 
-- 
+Cardinality: 1 Customer : N Reservations
 
----
+Participation: Partial for Customer, Total for Reservation (every reservation must be made by a customer)
 
-# Scenario B: City Library Event & Book Lending System
+Assigned_To (Reservation ↔ Table)
 
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
+Cardinality: 1 Reservation : 1 Table, but a Table can have multiple reservations over time
 
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
+Participation: Total for Reservation
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+Includes (Reservation ↔ Order)
 
-### Entities and Attributes
+Cardinality: 1 Reservation : N Orders
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+Participation: Total for Order
 
-### Relationships and Constraints
+Contains (Order ↔ Dish)
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+Cardinality: M:N (an order can contain multiple dishes, a dish can appear in multiple orders)
 
-### Assumptions
-- 
-- 
-- 
+Requires a bridge entity (Order_Details)
 
----
+Generates (Reservation ↔ Bill)
 
-# Scenario C: Restaurant Table Reservation & Ordering
+Cardinality: 1 Reservation : 1 Bill
 
-**Business Context:**  
-A popular restaurant wants to manage reservations, orders, and billing.
+Ensures one bill per reservation
 
-**Requirements:**  
-- Customers can reserve tables or walk in.  
-- Each reservation includes date, time, and number of guests.  
-- Customers place food orders linked to reservations.  
-- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
-- Bills generated per reservation, including food and service charges.  
-- Waiters assigned to serve reservations.
+Serves (Waiter ↔ Reservation)
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
+Cardinality: 1 Waiter : N Reservations
 
-### Entities and Attributes
+### Extension (Billing):
+Each reservation generates one bill capturing all orders and payment details.
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+### Design Choices:
+Entities: Chose Customer, Reservation, Table, Order, Dish, Bill, and Waiter to represent key parts of a restaurant management system.
 
-### Relationships and Constraints
+Relationships:
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+Customer Makes Reservation (1:N) – A customer can make multiple reservations.
 
-### Assumptions
-- 
-- 
-- 
+Reservation Assigned to Table (1:1) – Each reservation is for one table, but tables can have multiple reservations over time.
 
----
+Reservation Includes Order (1:N) – A reservation can have multiple orders.
 
-## Instructions for Students
+Order Contains Dish (M:N) – Orders can include multiple dishes, and dishes can appear in multiple orders.
 
-1. Complete **all three scenarios** (A, B, C).  
-2. Identify entities, relationships, and attributes for each.  
-3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
-4. Fill in all tables and assumptions for each scenario.  
-5. Export the completed Markdown (with diagrams) as **a single PDF**
+Reservation Generates Bill (1:1) – Each reservation produces a single bill.
+
+Waiter Serves Reservation (1:N) – A waiter can serve multiple reservations.
+
+Assumptions:
+
+Each reservation is linked to exactly one table and one waiter.
+
+Customers may have multiple reservations.
+
+Bills are generated per reservation, not per order or dish.
+
+Orders are created only for confirmed reservations.
+
+### RESULT
+Thus, this project effectively models a restaurant table reservation and ordering system through an ER diagram, clearly representing the relationships among customers, reservations, tables, orders, dishes, bills, and waiters.
+Participation: Total on Reservation, Partial on Waiter
+
