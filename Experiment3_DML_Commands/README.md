@@ -46,124 +46,172 @@ Used to retrieve records from a table.
 SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
---
--- Paste Question 1 here
+
+Write a SQL statement to Update the address to '58 Lakeview, Magnolia' where supplier ID is 5 in the suppliers table.
+<img width="896" height="445" alt="Screenshot 2025-10-17 103021" src="https://github.com/user-attachments/assets/a5de95d6-5f9d-47b4-a54b-9d75ea444205" />
+
 
 ```sql
--- Paste your SQL code below for Question 1
+UPDATE suppliers
+SET address='58 Lakeview, Magnolia'
+WHERE supplier_id=5;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1345" height="165" alt="Screenshot 2025-10-17 103343" src="https://github.com/user-attachments/assets/f17574d5-82a3-4719-84e5-c5f6bd88e190" />
+
 
 **Question 2**
----
--- Paste Question 2 here
+
+Write a SQL statement to Update the grade of all customers in Chennai city as  5. 
+
+
+<img width="707" height="77" alt="Screenshot 2025-10-17 103936" src="https://github.com/user-attachments/assets/845788be-ff27-48cc-9094-77692d1d2e41" />
+
 
 ```sql
--- Paste your SQL code below for Question 2
+UPDATE Customer
+SET grade=5
+WHERE city='Chennai';
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1271" height="350" alt="Screenshot 2025-10-17 104039" src="https://github.com/user-attachments/assets/f4bba189-2a4e-4dae-97b0-3ac7676b2ecb" />
 
 **Question 3**
----
--- Paste Question 3 here
+
+Write a SQL statement to change salary of employee to 8000 whose Employee ID is 105, if the existing salary is less than 5000.
+
+<img width="1067" height="481" alt="Screenshot 2025-10-17 104212" src="https://github.com/user-attachments/assets/10697f42-8dfa-467d-8c6d-0d3dd20fdd0c" />
+
 
 ```sql
--- Paste your SQL code below for Question 3
+UPDATE Employees
+SET salary=8000
+WHERE employee_id=105 AND salary<5000;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1260" height="143" alt="Screenshot 2025-10-17 104305" src="https://github.com/user-attachments/assets/ac34be38-b98c-49cd-828e-104d2dba4529" />
 
 **Question 4**
----
--- Paste Question 4 here
+
+Write a SQL statement to double the availability of the product with product_id 1.
+
+<img width="708" height="212" alt="Screenshot 2025-10-17 104350" src="https://github.com/user-attachments/assets/1f72e0ea-37bb-4b09-b8cc-df285ab36171" />
+
 
 ```sql
--- Paste your SQL code below for Question 4
+UPDATE products
+SET availability=availability*2
+WHERE product_id=1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1185" height="193" alt="Screenshot 2025-10-17 104520" src="https://github.com/user-attachments/assets/e24ff502-9503-4343-8da0-3792ecbda71a" />
+
+
 
 **Question 5**
----
--- Paste Question 5 here
+
+Write a SQL statement to Update the reorder level to 20 where the quantity in stock is less than 10 and product category is 'Snacks' in the products table.
+
+<img width="1167" height="426" alt="Screenshot 2025-10-17 104624" src="https://github.com/user-attachments/assets/c2a661ca-84cb-4196-8c08-7e4150b454e6" />
+
 
 ```sql
--- Paste your SQL code below for Question 5
+UPDATE products
+SET reorder_lvl=20
+WHERE quantity<10 AND category='Snacks';
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1206" height="274" alt="Screenshot 2025-10-17 104726" src="https://github.com/user-attachments/assets/ccc269c2-9461-43a0-91e4-4bb1c3048265" />
+
 
 **Question 6**
----
--- Paste Question 6 here
+
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is odd.
+
+<img width="1026" height="319" alt="Screenshot 2025-10-17 104831" src="https://github.com/user-attachments/assets/37ebc924-818a-4e1b-9725-473a6698c7a5" />
+
 
 ```sql
--- Paste your SQL code below for Question 6
+DELETE FROM customer WHERE GRADE%2!=0
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1884" height="261" alt="Screenshot 2025-10-17 104942" src="https://github.com/user-attachments/assets/ae6633ec-3acb-424b-9a60-03086206e1c2" />
+
 
 **Question 7**
----
--- Paste Question 7 here
+
+Write a SQL query to Delete All Doctors with a NULL Last Name
+
+<img width="811" height="544" alt="Screenshot 2025-10-17 105044" src="https://github.com/user-attachments/assets/cc0d5233-3ac0-44eb-be0b-dd6aa5d10ae0" />
+
 
 ```sql
--- Paste your SQL code below for Question 7
+DELETE FROM doctors WHERE last_name is NULL;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1154" height="644" alt="Screenshot 2025-10-17 105131" src="https://github.com/user-attachments/assets/6eecb09d-add4-411c-82ea-afd4a7c687ac" />
+
 
 **Question 8**
----
--- Paste Question 8 here
+
+Write a SQL query to Delete All Doctors whose ID ranges from 2 to 4.
+
+<img width="685" height="415" alt="Screenshot 2025-10-17 105208" src="https://github.com/user-attachments/assets/5083683c-c44f-4b25-b929-e34f69445b54" />
 
 ```sql
--- Paste your SQL code below for Question 8
+DELETE FROM doctors WHERE doctor_id BETWEEN 2 AND 4;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1183" height="754" alt="Screenshot 2025-10-17 105254" src="https://github.com/user-attachments/assets/adfe6092-eef8-4637-b868-246962395ba9" />
+
 
 **Question 9**
----
--- Paste Question 9 here
+
+Write a SQL query to Delete a Specific Surgery whose ID is 3 or surgeon ID is 4.
+
+<img width="806" height="580" alt="Screenshot 2025-10-17 105332" src="https://github.com/user-attachments/assets/72fee2ab-be83-408d-ad87-bb94a2f162ec" />
+
 
 ```sql
--- Paste your SQL code below for Question 9
+DELETE FROM surgeries WHERE surgery_id=3 OR surgeon_id=4;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1159" height="810" alt="Screenshot 2025-10-17 105425" src="https://github.com/user-attachments/assets/261234ad-6f80-4111-afff-e347385f621a" />
+
 
 **Question 10**
----
--- Paste Question 10 here
+
+Write a SQL query to Delete customers from 'customer' table where 'CUST_CITY' is not 'New York' and 'OUTSTANDING_AMT' is greater than 5000
+
+<img width="1242" height="372" alt="Screenshot 2025-10-17 105520" src="https://github.com/user-attachments/assets/61003f1b-cd93-448b-bb62-bf1c67c4b13a" />
+
 
 ```sql
--- Paste your SQL code below for Question 10
+DELETE FROM customer WHERE CUST_CITY!='New York'AND OUTSTANDING_AMT>5000;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1722" height="324" alt="Screenshot 2025-10-17 105647" src="https://github.com/user-attachments/assets/4773466e-8c2d-4561-8edb-2d342a01a023" />
+
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
